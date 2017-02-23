@@ -80,20 +80,13 @@ function (id) {
 					Object.keys(data[key]).forEach(function (k) {
 						if(!data[key][k] || data[key][k] == '') { data[key][k] = ''; }
 						var header = (i <= thRows-1 ) ? true: (j <= thCols-1) ? true : false; 
-						rtn[i].push({value: data[key][k], header: header});
+						rtn[i].push({value: data[key][k], header: true});
 						j++;
 					});
 					i++;
 				});
 			}
 			
-			for(var i=0; i < rtn[0].length; i++) {
-				if(i == 0) {
-					title.push(titleText);
-				} else {
-					title.push('');
-				}
-			}
-			rtn.unshift(title);
-			return {'htmlTable2JavascriptArray': rtn};
+			
+			return {'htmlTable2JavascriptArray': { 'data': rtn, 'title':title }};
 		}
